@@ -1,7 +1,8 @@
-package com.moviles.vynils
+package com.moviles.vynils.ui.adapters
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.moviles.vynils.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
