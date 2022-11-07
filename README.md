@@ -51,10 +51,9 @@ To get a local copy up and running follow these simple example steps.
 3. En la parte superior derecha oprima Gradle
 4. En la parte superiro derecha encontrara un play para correr la app (run)
 
+### apk 
 
-
-<!-- ARCHITECTURE -->
-## Architecture
+https://github.com/Arthur-Ackernman/kotlin-Vynils/tree/develop/app/src/main/res/Versiones_APK
 
 
 <!-- CONTACT -->
