@@ -32,6 +32,8 @@
 
                 <!-- Title, secondary and supporting text -->
                 <TextView
+
+                    android:id="@+id/titleAlbum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{album.name}"
