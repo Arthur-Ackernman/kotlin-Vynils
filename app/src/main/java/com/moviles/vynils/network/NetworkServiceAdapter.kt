@@ -12,6 +12,9 @@ import com.android.volley.toolbox.Volley
 import com.moviles.vynils.models.Album
 import org.json.JSONArray
 import org.json.JSONObject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class NetworkServiceAdapter constructor(context: Context) {
     companion object{
@@ -56,6 +59,23 @@ class NetworkServiceAdapter constructor(context: Context) {
             },
             Response.ErrorListener {
                 onError(it)
+            }))
+    }
+
+    suspend fun getCollectors() = suspendCoroutine<List<Collector>>{ cont->
+        requestQueue.add(getRequest("collectors",
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Collector>()
+                for (i in 0 until resp.length()) { //inicializado como variable de retorno
+                    val item = resp.getJSONObject(i)
+                    val collector = Collector(collectorId = item.getInt("id"),name = item.getString("name"), telephone = item.getString("telephone"), email = item.getString("email"))
+                    list.add(collector) //se agrega a medida que se procesa la respuesta
+                }
+                cont.resume(list)
+            },
+            {
+                cont.resumeWithException(it)
             }))
     }
 
