@@ -30,3 +30,4 @@ class DetailArtistViewModel(app: Application, artist: Artist) : AndroidViewModel
         }
     }
 }
+
