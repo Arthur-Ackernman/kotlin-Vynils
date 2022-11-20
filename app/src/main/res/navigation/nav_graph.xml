@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/albumFragment">
+    app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.moviles.vynils.ui.AlbumFragment"
@@ -22,5 +22,40 @@
             android:name="albumId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.moviles.vynils.ui.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_albumFragment"
+            app:destination="@id/albumFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_artistFragment"
+            app:destination="@id/artistFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_collectorFragment"
+            app:destination="@id/collectorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/artistFragment"
+        android:name="com.moviles.vynils.ui.ArtistFragment"
+        android:label="artist_fragment"
+        tools:layout="@layout/artist_fragment" >
+        <action
+            android:id="@+id/action_artistFragment_to_detailArtistFragment"
+            app:destination="@id/detailArtistFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailArtistFragment"
+        android:name="com.moviles.vynils.ui.DetailArtistFragment"
+        android:label="DetailArtistFragment" >
+        <argument
+            android:name="artist"
+            app:argType="com.moviles.vynils.models.Artist" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectorFragment"
+        android:name="com.moviles.vynils.ui.CollectorFragment"
+        android:label="CollectorFragment" />
 
 </navigation>

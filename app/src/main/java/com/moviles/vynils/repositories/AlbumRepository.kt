@@ -1,28 +1,28 @@
 package com.moviles.vynils.repositories
 
 import android.app.Application
+import android.util.Log
 import com.android.volley.VolleyError
 import com.moviles.vynils.models.Album
+import com.moviles.vynils.network.CacheManager
 import com.moviles.vynils.network.NetworkServiceAdapter
 
 class AlbumRepository (val application: Application) {
-    fun refreshData(callback: (List<Album>)->Unit, onError: (VolleyError)->Unit) {
+    suspend fun refreshData(): List<Album> {
         //Determinar la fuente de datos que se va a utilizar. Si es necesario consultar la red, ejecutar el siguiente código
-        NetworkServiceAdapter.getInstance(application).getAlbums({
-            //Guardar los albumes de la variable it en un almacén de datos local para uso futuro
-            callback(it)
-        },
-            onError
-        )
+        return NetworkServiceAdapter.getInstance(application).getAlbums()
     }
 
-    fun refreshData(albumId: Int, callback: (Album)->Unit, onError: (VolleyError)->Unit) {
-        //Determinar la fuente de datos que se va a utilizar. Si es necesario consultar la red, ejecutar el siguiente código
-        NetworkServiceAdapter.getInstance(application).getAlbum(albumId, {
-            //Guardar los albumes de la variable it en un almacén de datos local para uso futuro
-            callback(it)
-        },
-            onError
-        )
+    suspend fun refreshData(albumId: Int): Album {
+        var albumRespCache = CacheManager.getIntance(application.applicationContext).getAlbum(albumId)
+        if(albumRespCache.albumId == 0) {
+            Log.d("Cache decision", "get from network")
+            var album = NetworkServiceAdapter.getInstance(application).getAlbum(albumId)
+            CacheManager.getIntance(application.applicationContext).addAlbum(albumId, album)
+            return album
+        }else{
+            Log.d("Cache decision", "return ${albumRespCache} elements from cache")
+            return albumRespCache
+        }
     }
 }
