@@ -5,6 +5,9 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.moviles.vynils.models.Album
 import com.moviles.vynils.repositories.AlbumRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DetailAlbumViewModel(application: Application, albumId: Int) :  AndroidViewModel(application) {
     private val albumsRepository = AlbumRepository(application)
@@ -31,13 +34,20 @@ class DetailAlbumViewModel(application: Application, albumId: Int) :  AndroidVie
     }
 
     private fun refreshDataFromNetwork() {
-        albumsRepository.refreshData(id,{
-            _album.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
+        try {
+            viewModelScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.IO){
+                    val data = albumsRepository.refreshData(id)
+                    _album.postValue(data)
+                }
+            }
+            _eventNetworkError.postValue(false)
+            _isNetworkErrorShown.postValue(false)
+        }
+        catch (e:Exception){
+            Log.d("Error", e.toString())
             _eventNetworkError.value = true
-        })
+        }
     }
 
     fun onNetworkErrorShown() {
