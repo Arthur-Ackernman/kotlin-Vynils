@@ -6,5 +6,11 @@
     <string name="title_albums">Albums</string>
     <string name="title_album">Detail album</string>
     <string name="cover">Cover album</string>
+    <string name="home_artist">Find your favorite artists</string>
+    <string name="home_albums">Go to Albums</string>
+    <string name="home_collectors">Find Collectors</string>
+    <string name="title_artist">Detail Artist</string>
+    <string name="title_artists">Artists</string>
+    <string name="title_collectors">Collector</string>
 
 </resources>
