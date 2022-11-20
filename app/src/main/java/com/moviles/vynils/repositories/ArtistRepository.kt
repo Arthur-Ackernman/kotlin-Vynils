@@ -7,13 +7,6 @@ import com.moviles.vynils.network.NetworkServiceAdapter
 class ArtistRepository(val app: Application) {
 
     suspend fun refreshData(): List<Artist> {
-        /*
-        val bandas = NetworkServiceAdapter.getInstance(app).getBands()
-        val musicos = NetworkServiceAdapter.getInstance(app).getMusicians()
-        val artistas : List<Artist> = merge(bandas, musicos)
-
-        return artistas
-*/
         return merge(NetworkServiceAdapter.getInstance(app).getBands(), NetworkServiceAdapter.getInstance(app).getMusicians())
     }
 
