@@ -10,8 +10,14 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.moviles.vynils.models.Album
+import com.moviles.vynils.models.Artist
+import com.moviles.vynils.models.Band
+import com.moviles.vynils.models.Musician
 import org.json.JSONArray
 import org.json.JSONObject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class NetworkServiceAdapter constructor(context: Context) {
     companion object{
@@ -56,6 +62,48 @@ class NetworkServiceAdapter constructor(context: Context) {
             },
             Response.ErrorListener {
                 onError(it)
+            }))
+    }
+
+    suspend fun getBands() = suspendCoroutine<List<Artist>> { cont ->
+        requestQueue.add(getRequest("bands/",
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Band>()
+                var item: JSONObject? = null
+                var artist: Band? = null
+                for (i in 0 until resp.length()) {
+                    item = resp.getJSONObject(i)
+                    artist = Band(id = item.getInt("id"), name=item.getString("name"),
+                        image = item.getString("image"), description = item.getString("description"),
+                        creationdate = item.getString("creationDate"))
+                    list.add(artist)
+                }
+                cont.resume(list)
+            },
+            {
+                cont.resumeWithException(it)
+            }))
+    }
+
+    suspend fun getMusicians() = suspendCoroutine<List<Artist>> { cont ->
+        requestQueue.add(getRequest("musicians/",
+            { response ->
+                val resp = JSONArray(response)
+                val list = mutableListOf<Artist>()
+                var item: JSONObject? = null
+                var artist: Musician? = null
+                for (i in 0 until resp.length()) {
+                    item = resp.getJSONObject(i)
+                    artist = Musician(id = item.getInt("id"), name=item.getString("name"),
+                        image = item.getString("image"), description = item.getString("description"),
+                        birthdate = item.getString("birthDate"))
+                    list.add(artist)
+                }
+                cont.resume(list)
+            },
+            {
+                cont.resumeWithException(it)
             }))
     }
 
