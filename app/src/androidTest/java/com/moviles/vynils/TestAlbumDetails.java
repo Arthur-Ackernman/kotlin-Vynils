@@ -13,6 +13,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 
@@ -25,16 +26,38 @@ import static org.junit.Assert.assertEquals;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class Test1Vinyls {
+public class TestAlbumDetails {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityTestRule = new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void mainActivityTest1() throws InterruptedException {
+    public void testAlbumDetails() throws InterruptedException {
         Thread.sleep(5000);
-        //Check if the app loads the list of albums
-        onView(withId(R.id.albumsRv)).check(matches(isDisplayed()));
+        //Click on albums
+        onView(withId(R.id.home_album_image)).perform(click());
         Thread.sleep(2000);
+        int i=0;
+        boolean thereAlbums=false;
+        while (true){
+            try {
+                onView(withId(R.id.albumsRv)).perform(RecyclerViewActions.actionOnItemAtPosition(i,click()));
+                Thread.sleep(2000);
+
+                //Validate detail view is displayed - HU02
+                onView(allOf(withId(R.id.titleAlbum))).check(matches(isDisplayed()));
+                Espresso.pressBack();
+                Thread.sleep(1000);
+                i++;
+                thereAlbums=true;
+            }catch (PerformException e){
+                break;
+            }
+            if (i==50){
+                break;
+            }
+
+        }
+        assertEquals(true, thereAlbums);
     }
 }
