@@ -12,32 +12,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/ivArtistImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/cover"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
+        <TextView
+            android:id="@+id/tvArtistName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <ImageView
-                android:id="@+id/ivArtistImage"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:contentDescription="@string/cover"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <TextView
-                android:id="@+id/tvArtistName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@+id/ivArtistImage"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@{artist.name}"
-                tools:text="TextView" />
-
-        </LinearLayout>
-
+            android:text="@{artist.name}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivArtistImage"
+            tools:text="TextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

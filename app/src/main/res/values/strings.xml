@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Vynils</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="btnHome">Home</string>
     <string name="title_albums">Albums</string>
     <string name="title_album">Detail album</string>
     <string name="cover">Cover album</string>

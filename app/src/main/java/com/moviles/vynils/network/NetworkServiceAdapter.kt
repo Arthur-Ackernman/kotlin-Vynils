@@ -1,7 +1,6 @@
 package com.moviles.vynils.network
 
 import android.content.Context
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -35,8 +34,9 @@ class NetworkServiceAdapter constructor(context: Context) {
             Response.Listener<String> { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Album>()
+                var item:JSONObject? = null
                 for (i in 0 until resp.length()) {
-                    val item = resp.getJSONObject(i)
+                    item = resp.getJSONObject(i)
                     list.add(i, Album(albumId = item.getInt("id"),name = item.getString("name"), cover = item.getString("cover"), recordLabel = item.getString("recordLabel"), releaseDate = item.getString("releaseDate"), genre = item.getString("genre"), description = item.getString("description")))
                 }
                 cont.resume(list)
@@ -49,7 +49,6 @@ class NetworkServiceAdapter constructor(context: Context) {
     suspend fun getAlbum(albumId:Int) = suspendCoroutine<Album>{ cont->
         requestQueue.add(getRequest("albums/$albumId",
             Response.Listener<String> { response ->
-                Log.d("DetalleAlbum", response)
                 val resp = JSONObject(response)
                 val item = Album(albumId = resp.getInt("id"),name = resp.getString("name"), cover = resp.getString("cover"), recordLabel = resp.getString("recordLabel"), releaseDate = resp.getString("releaseDate"), genre = resp.getString("genre"), description = resp.getString("description"))
                 cont.resume(item)
@@ -64,10 +63,10 @@ class NetworkServiceAdapter constructor(context: Context) {
             { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Collector>()
+                var item:JSONObject? = null
                 for (i in 0 until resp.length()) { //inicializado como variable de retorno
-                    val item = resp.getJSONObject(i)
-                    val collector = Collector(collectorId = item.getInt("id"),name = item.getString("name"), telephone = item.getString("telephone"), email = item.getString("email"))
-                    list.add(collector) //se agrega a medida que se procesa la respuesta
+                    item = resp.getJSONObject(i)
+                    list.add(i, Collector(collectorId = item.getInt("id"),name = item.getString("name"), telephone = item.getString("telephone"), email = item.getString("email")))
                 }
                 cont.resume(list)
             },
