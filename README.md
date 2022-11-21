@@ -53,7 +53,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### apk 
 
-https://github.com/Arthur-Ackernman/kotlin-Vynils/tree/develop/app/src/main/res/Versiones_APK
+https://github.com/Arthur-Ackernman/kotlin-Vynils/blob/main/APK_Version/app-debug.apk
 
 
 <!-- CONTACT -->
