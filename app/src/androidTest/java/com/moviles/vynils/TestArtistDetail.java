@@ -26,23 +26,26 @@ import static org.junit.Assert.assertEquals;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class Test2Vinyls {
+public class TestArtistDetail {
 
     @Rule
     public ActivityScenarioRule<MainActivity> mActivityTestRule = new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void mainActivityTest1() throws InterruptedException {
-        Thread.sleep(5000);
+    public void testArtistDetails() throws InterruptedException {
+        Thread.sleep(2000);
+        //Click on albums
+        onView(withId(R.id.home_artist_image)).perform(click());
+        Thread.sleep(2000);
         int i=0;
         boolean thereAlbums=false;
         while (true){
             try {
-                onView(withId(R.id.albumsRv)).perform(RecyclerViewActions.actionOnItemAtPosition(i,click()));
+                onView(withId(R.id.artistRv)).perform(RecyclerViewActions.actionOnItemAtPosition(i,click()));
                 Thread.sleep(2000);
 
                 //Validate detail view is displayed - HU02
-                onView(allOf(withId(R.id.titleAlbum))).check(matches(isDisplayed()));
+                onView(allOf(withId(R.id.nameArtist))).check(matches(isDisplayed()));
                 Espresso.pressBack();
                 Thread.sleep(1000);
                 i++;
