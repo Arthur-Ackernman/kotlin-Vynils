@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/home_artist_image"
+        android:layout_width="117dp"
+        android:layout_height="107dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sam_moghadam_khamseh_tmbmlavxrzq_unsplash"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.211"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"/>
+
+    <TextView
+        android:id="@+id/home_artist_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_artist"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/home_artist_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.789" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/home_album_image"
+        android:layout_width="117dp"
+        android:layout_height="107dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/top_view_vinyl_disc_yellow_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.581"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"/>
+
+    <TextView
+        android:id="@+id/home_album_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_albums"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/home_album_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_artist_image"
+        app:layout_constraintVertical_bias="0.734" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/home_collector_image"
+        android:layout_width="117dp"
+        android:layout_height="107dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/records_g1f2d4aaed_640"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.926"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_collectors"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/home_collector_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_album_image"
+        app:layout_constraintVertical_bias="0.736" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,15 +10,10 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.moviles.vynils.R
-import com.moviles.vynils.databinding.AlbumFragmentBinding
 import com.moviles.vynils.databinding.DetailAlbumFragmentBinding
 import com.moviles.vynils.models.Album
-import com.moviles.vynils.ui.adapters.AlbumsAdapter
-import com.moviles.vynils.viewmodels.AlbumViewModel
 import com.moviles.vynils.viewmodels.DetailAlbumViewModel
 
 /**

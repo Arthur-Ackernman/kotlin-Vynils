@@ -1,13 +1,15 @@
 package com.moviles.vynils.ui.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.moviles.vynils.R
 import com.moviles.vynils.databinding.AlbumItemBinding
 import com.moviles.vynils.models.Album
@@ -54,7 +56,15 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
         }
 
         fun loadImage(albumModel: Album){
-            Glide.with(viewDataBinding.ivAlbumCover.context).load(albumModel.cover).into(viewDataBinding.ivAlbumCover)
+            //Glide.with(viewDataBinding.ivAlbumCover.context).load(albumModel.cover).into(viewDataBinding.ivAlbumCover)
+            Glide.with(itemView)
+                .load(albumModel.cover.toUri().buildUpon().scheme("https").build())
+                .apply(
+                    RequestOptions()
+                        .placeholder(R.drawable.loading_animation)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .error(R.drawable.ic_broken_image))
+                .into(viewDataBinding.ivAlbumCover)
         }
 
     }
