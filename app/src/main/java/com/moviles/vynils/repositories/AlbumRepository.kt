@@ -2,7 +2,6 @@ package com.moviles.vynils.repositories
 
 import android.app.Application
 import android.util.Log
-import com.android.volley.VolleyError
 import com.moviles.vynils.models.Album
 import com.moviles.vynils.network.CacheManager
 import com.moviles.vynils.network.NetworkServiceAdapter

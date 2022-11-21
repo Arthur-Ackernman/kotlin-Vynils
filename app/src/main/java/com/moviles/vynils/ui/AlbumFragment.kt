@@ -10,9 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.moviles.vynils.R
 import com.moviles.vynils.databinding.AlbumFragmentBinding
 import com.moviles.vynils.models.Album
