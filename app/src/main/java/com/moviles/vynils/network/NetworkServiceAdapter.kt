@@ -129,6 +129,46 @@ class NetworkServiceAdapter constructor(context: Context) {
             }))
     }
 
+    suspend fun postBand(name: String, image: String, description: String, date: String) = suspendCoroutine<String> { cont ->
+
+        val postParams = mapOf<String, Any>(
+            "name" to name,
+            "description" to description,
+            "creationDate" to date,
+            "image" to image
+        )
+        requestQueue.add(postRequest("bands/", JSONObject(postParams),
+            {response ->
+                cont.resume(response.toString())
+
+            },
+            {
+                cont.resumeWithException(it)
+            }
+        ))
+
+    }
+
+    suspend fun postMusician(name: String, image: String, description: String, date: String) = suspendCoroutine<String> { cont ->
+
+        val postParams = mapOf<String, Any>(
+            "name" to name,
+            "description" to description,
+            "birthDate" to date,
+            "image" to image
+        )
+        requestQueue.add(postRequest("musicians/", JSONObject(postParams),
+            {response ->
+                cont.resume(response.toString())
+
+            },
+            {
+                cont.resumeWithException(it)
+            }
+        ))
+
+    }
+
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)

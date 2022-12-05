@@ -12,6 +12,14 @@ class ArtistRepository(val app: Application) {
 
     fun <T> merge(first: List<T>, second: List<T>): List<T> {
         return first + second
+}
+
+    suspend fun postBand(name: String, image: String, description: String, date: String): String {
+        // Log.d("postBand called", name + description + date + image )
+        return NetworkServiceAdapter.getInstance(app).postBand(name,image, description,date)
     }
 
+    suspend fun postMusician(name: String, image: String, description: String, date: String): String {
+        return NetworkServiceAdapter.getInstance(app).postMusician(name, image, description, date)
+    }
 }
