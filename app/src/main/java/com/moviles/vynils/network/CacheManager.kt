@@ -3,6 +3,7 @@ package com.moviles.vynils.network
 import android.content.Context
 import com.moviles.vynils.models.Album
 import com.moviles.vynils.models.Artist
+import com.moviles.vynils.models.Collector
 
 class CacheManager(context: Context) {
     companion object{
@@ -17,6 +18,7 @@ class CacheManager(context: Context) {
 
     private var albums: HashMap<Int, Album> = hashMapOf()
     private var artists: HashMap<Int, Artist> = hashMapOf()
+    private var collectors: HashMap<Int, Collector> = hashMapOf()
 
     fun addAlbum(albumId: Int, album: Album){
         if (!albums.containsKey(albumId)){
@@ -36,5 +38,15 @@ class CacheManager(context: Context) {
 
     fun getArtist(artistId: Int): Artist? {
         return if (artists.containsKey(artistId)) artists[artistId]!! else null
+    }
+
+    fun getCollector(collectorId: Int) : Collector? {
+        return if (collectors.containsKey(collectorId)) collectors[collectorId]!! else null
+    }
+
+    fun addCollector(collectorId: Int, collector: Collector){
+        if (!collectors.containsKey(collectorId)){
+            collectors[collectorId] = collector
+        }
     }
 }

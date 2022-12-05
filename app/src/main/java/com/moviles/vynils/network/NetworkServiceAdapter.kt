@@ -117,6 +117,18 @@ class NetworkServiceAdapter constructor(context: Context) {
             }))
     }
 
+    suspend fun getCollector(collectorId:Int) = suspendCoroutine<Collector>{ cont->
+        requestQueue.add(getRequest("collectors/$collectorId",
+            { response ->
+                val resp = JSONObject(response)
+                val item = Collector(collectorId = resp.getInt("id"), name = resp.getString("name"), telephone = resp.getString("telephone"), email = resp.getString("email"))
+                cont.resume(item)
+            },
+            {
+                cont.resumeWithException(it)
+            }))
+    }
+
 
     private fun getRequest(path:String, responseListener: Response.Listener<String>, errorListener: Response.ErrorListener): StringRequest {
         return StringRequest(Request.Method.GET, BASE_URL+path, responseListener,errorListener)
