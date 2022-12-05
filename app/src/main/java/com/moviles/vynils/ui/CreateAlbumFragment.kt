@@ -1,16 +1,20 @@
 package com.moviles.vynils.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
 import com.moviles.vynils.R
 import com.moviles.vynils.databinding.CreateAlbumFragmentBinding
 import com.moviles.vynils.models.Album
@@ -18,6 +22,7 @@ import com.moviles.vynils.models.NewAlbum
 import com.moviles.vynils.viewmodels.CreateAlbumViewModel
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -57,10 +62,10 @@ class CreateAlbumFragment : Fragment() {
         tfGenre = binding.tfGenre
         tfRecordLabel = binding.tfRecordLabel
 
-        var adapter = ArrayAdapter(requireContext(), R.layout.list_item_types, genres)
+        var adapter = ArrayAdapter(requireContext(), R.layout.list_item, genres)
         (tfGenre.editText as? AutoCompleteTextView)?.setAdapter(adapter)
 
-        adapter = ArrayAdapter(requireContext(), R.layout.list_item_types, recordLabels)
+        adapter = ArrayAdapter(requireContext(), R.layout.list_item, recordLabels)
         (tfRecordLabel.editText as? AutoCompleteTextView)?.setAdapter(adapter)
 
         teReleaseDate.setOnClickListener() {
@@ -75,7 +80,7 @@ class CreateAlbumFragment : Fragment() {
                 tfDescription.editText?.text.toString(),
                 tfGenre.editText?.text.toString(),
                 tfRecordLabel.editText?.text.toString()
-              )
+            )
 
             Toast.makeText(view.context, "Album Creted", Toast.LENGTH_LONG).show()
             clearError()

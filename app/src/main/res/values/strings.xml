@@ -10,5 +10,11 @@
     <string name="title_artist">Detail Artist</string>
     <string name="title_artists">Artists</string>
     <string name="title_collectors">Collector</string>
+    <string name="create_album_name_error">Name must not be empty</string>
+    <string name="create_album_cover_error">Cover must not be empty</string>
+    <string name="create_album_date_error">Select a realease date</string>
+    <string name="create_album_description_error">Description must not be empty</string>
+    <string name="create_album_genre_error">Select a genre</string>
+    <string name="create_album_record_error">Select a record label</string>
 
 </resources>

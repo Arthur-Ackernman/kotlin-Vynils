@@ -9,3 +9,12 @@ data class Album(
     val genre:String,
     val recordLabel:String
 )
+
+data class NewAlbum(
+    val name:String,
+    val cover:String,
+    val releaseDate:String,
+    val description:String,
+    val genre:String,
+    val recordLabel:String
+)
