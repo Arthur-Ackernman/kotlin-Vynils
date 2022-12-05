@@ -7,16 +7,20 @@
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.moviles.vynils.ui.AlbumFragment"
-        android:label="album_fragment"
+        android:label="Albums"
+
         tools:layout="@layout/album_fragment">
         <action
             android:id="@+id/action_albumFragment_to_detailAlbumFragment"
             app:destination="@id/detailAlbumFragment" />
+        <action
+            android:id="@+id/action_albumFragment_to_createAlbumFragment"
+            app:destination="@id/createAlbumFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailAlbumFragment"
         android:name="com.moviles.vynils.ui.DetailAlbumFragment"
-        android:label="detail_album_fragment"
+        android:label="Detail Album"
         tools:layout="@layout/detail_album_fragment">
         <argument
             android:name="albumId"
@@ -25,7 +29,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.moviles.vynils.ui.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="Home">
         <action
             android:id="@+id/action_homeFragment_to_albumFragment"
             app:destination="@id/albumFragment" />
@@ -39,19 +43,16 @@
     <fragment
         android:id="@+id/artistFragment"
         android:name="com.moviles.vynils.ui.ArtistFragment"
-        android:label="artist_fragment"
+        android:label="Artists"
         tools:layout="@layout/artist_fragment" >
         <action
             android:id="@+id/action_artistFragment_to_detailArtistFragment"
             app:destination="@id/detailArtistFragment" />
-        <action
-            android:id="@+id/action_artistFragment_to_addArtistFragment2"
-            app:destination="@id/addArtistFragment2" />
     </fragment>
     <fragment
         android:id="@+id/detailArtistFragment"
         android:name="com.moviles.vynils.ui.DetailArtistFragment"
-        android:label="DetailArtistFragment" >
+        android:label="Detail Artist" >
         <argument
             android:name="artist"
             app:argType="com.moviles.vynils.models.Artist" />
@@ -59,10 +60,22 @@
     <fragment
         android:id="@+id/collectorFragment"
         android:name="com.moviles.vynils.ui.CollectorFragment"
-        android:label="CollectorFragment" />
+        android:label="Collector" >
+        <action
+            android:id="@+id/action_collectorFragment_to_detailCollectorFragment"
+            app:destination="@id/detailCollectorFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/addArtistFragment2"
-        android:name="com.moviles.vynils.ui.AddArtistFragment"
-        android:label="AddArtistFragment" />
+        android:id="@+id/detailCollectorFragment"
+        android:name="com.moviles.vynils.ui.DetailCollectorFragment"
+        android:label="Detail Collector">
+        <argument
+            android:name="collectorId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/createAlbumFragment"
+        android:name="com.moviles.vynils.ui.CreateAlbumFragment"
+        android:label="Create Album" />
 
 </navigation>
