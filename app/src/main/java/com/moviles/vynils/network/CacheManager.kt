@@ -43,4 +43,10 @@ class CacheManager(context: Context) {
     fun getCollector(collectorId: Int) : Collector? {
         return if (collectors.containsKey(collectorId)) collectors[collectorId]!! else null
     }
+
+    fun addCollector(collectorId: Int, collector: Collector){
+        if (!collectors.containsKey(collectorId)){
+            collectors[collectorId] = collector
+        }
+    }
 }
