@@ -62,7 +62,7 @@ class ArtistFragment : Fragment() {
         })
 
         binding.buttonAdd.setOnClickListener {
-            findNavController().navigate(ArtistFragmentDirections.actionArtistFragmentToAddArtistFragment())
+            findNavController().navigate(ArtistFragmentDirections.actionArtistFragmentToAddArtistFragment2())
 
         }
     }
