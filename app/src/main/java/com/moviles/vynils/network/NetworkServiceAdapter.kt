@@ -1,12 +1,15 @@
 package com.moviles.vynils.network
 
 import android.content.Context
+import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
+import com.google.gson.JsonElement
 import com.moviles.vynils.models.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -16,7 +19,7 @@ import kotlin.coroutines.suspendCoroutine
 
 class NetworkServiceAdapter constructor(context: Context) {
     companion object{
-        const val BASE_URL= "https://backvynils-android.herokuapp.com/"
+        const val BASE_URL= "https://vinylsmovil.uc.r.appspot.com/"
         var instance: NetworkServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -31,7 +34,7 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
     suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont->
         requestQueue.add(getRequest("albums/",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONArray(response)
                 val list = mutableListOf<Album>()
                 var item:JSONObject? = null
@@ -41,19 +44,35 @@ class NetworkServiceAdapter constructor(context: Context) {
                 }
                 cont.resume(list)
             },
-            Response.ErrorListener {
+            {
                 cont.resumeWithException(it)
             }))
     }
 
     suspend fun getAlbum(albumId:Int) = suspendCoroutine<Album>{ cont->
         requestQueue.add(getRequest("albums/$albumId",
-            Response.Listener<String> { response ->
+            { response ->
                 val resp = JSONObject(response)
                 val item = Album(albumId = resp.getInt("id"),name = resp.getString("name"), cover = resp.getString("cover"), recordLabel = resp.getString("recordLabel"), releaseDate = resp.getString("releaseDate"), genre = resp.getString("genre"), description = resp.getString("description"))
                 cont.resume(item)
             },
-            Response.ErrorListener {
+            {
+                cont.resumeWithException(it)
+            }))
+    }
+
+    suspend fun createAlbum(newAlbum: NewAlbum) = suspendCoroutine<Album>{ cont->
+
+        var gson = Gson()
+        var jsonString = gson.toJson(newAlbum)
+        Log.d("****createAlbum", jsonString)
+        requestQueue.add(postRequest("albums/", JSONObject(jsonString),
+            { resp ->
+                Log.d("****Response", resp.toString())
+                val item = Album(albumId = resp.getInt("id"),name = resp.getString("name"), cover = resp.getString("cover"), recordLabel = resp.getString("recordLabel"), releaseDate = resp.getString("releaseDate"), genre = resp.getString("genre"), description = resp.getString("description"))
+                cont.resume(item)
+            },
+            {
                 cont.resumeWithException(it)
             }))
     }
