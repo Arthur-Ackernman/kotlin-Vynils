@@ -26,6 +26,7 @@
                     <!-- Title, secondary and supporting text -->
                     <TextView
                         android:layout_width="wrap_content"
+                        android:id="@+id/nameCollector"
                         android:layout_height="wrap_content"
                         android:text="@{collector.name}"
                         android:textAppearance="?attr/textAppearanceHeadline6"
