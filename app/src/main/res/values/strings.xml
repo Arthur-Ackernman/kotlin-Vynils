@@ -16,5 +16,13 @@
     <string name="create_album_description_error">Description must not be empty</string>
     <string name="create_album_genre_error">Select a genre</string>
     <string name="create_album_record_error">Select a record label</string>
+    <string name="artist_name">Name</string>
+    <string name="artist_description">Description</string>
+    <string name="artist_image">Image</string>
+    <string name="error_add_artist">An error occurred while trying to create a band </string>
+    <string name="success_add_artist">Success</string>
+    <string name="add_artist">New Artist</string>
+    <string name="add_artist_button_description">Se muestra un boton para agregar nuevos artistas</string>
+    <string name="cancel_artist_button_description">Se muestra un boton para borrar el formulario</string>
 
 </resources>
