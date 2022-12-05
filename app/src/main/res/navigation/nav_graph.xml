@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_artistFragment_to_detailArtistFragment"
             app:destination="@id/detailArtistFragment" />
+        <action
+            android:id="@+id/action_artistFragment_to_addArtistFragment2"
+            app:destination="@id/addArtistFragment2" />
     </fragment>
     <fragment
         android:id="@+id/detailArtistFragment"
@@ -57,5 +60,9 @@
         android:id="@+id/collectorFragment"
         android:name="com.moviles.vynils.ui.CollectorFragment"
         android:label="CollectorFragment" />
+    <fragment
+        android:id="@+id/addArtistFragment2"
+        android:name="com.moviles.vynils.ui.AddArtistFragment"
+        android:label="AddArtistFragment" />
 
 </navigation>
